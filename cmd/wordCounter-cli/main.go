@@ -2,15 +2,11 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"errors"
 )
 
 func main() {
-	file, err := os.Open("not-a-real-file.txt")
-	if err != nil {
-		fmt.Println("An error occurred:", err)
-		return
-	}
-	fmt.Println("File opened successfully!")
-	file.Close()
+	
+	myError := errors.New("Something went wrong in the funtion")
+	fmt.Println(myError)
 }
