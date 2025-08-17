@@ -27,3 +27,4 @@ func main () {
 
 	wg.Wait() // Wait until the WaitGroup's counter is back to zero
 }
+
