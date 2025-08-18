@@ -6,44 +6,71 @@ import (
 	"time"
 )
 
-// The sayHello function now accepts a pointer to a WaitGroup.
+// The function now accepts a pointer to a WaitGroup.
 // The asterisk (*) in *sync.WaitGroup means this parameter is a pointer.
 // This allows the function to modify the original WaitGroup in the main function.
+// It will simulate pinging a URL and send the result back.
 
+func pingURL(url string, wg *sync.WaitGroup, c chan <- string) {
 
-func sayHello(wg *sync.WaitGroup, c chan<- time.Duration) {
-
-	defer wg.Done() //This tells the WaitGroup this goroutine is done
+	defer wg.Done() 
+	//This tells the WaitGroup this goroutine is done 
+	// even if there's an error
 
 	start := time.Now()
-	time.Sleep(2 * time.Second) //Wait for 2 seconds
-	
-	fmt.Println("Hello from the goroutine!")
+	// Simulate network latency (e.g., 500ms to 1.5s)
+	// In a real app, you'd make an actual HTTP request here.
+	time.Sleep(time.Duration(500+time.Now().UnixNano()%1000) * time.Millisecond)
 	elapsed := time.Since(start)
-	c <- elapsed // Send the elapsed time through the channel
+
+	// Format the result message
+	result := fmt.Sprintf("Pinged %s: %v", url, elapsed)
+
+	c <- result // Send result through the channel
 }
 
 func main () {
 	var wg sync.WaitGroup
 
 	//Create a channel that will send a time.Duration value.
-	c := make(chan time.Duration)
+	// We'll use a buffered channel here (size 3) to avoid blocking
+	// if main isn't ready to receive immediately.
+	results := make(chan string, 3)
 
-	wg.Add(1) // Tell the WaitGroup we have 1 goroutine to wait for
+	urls := []string{
+		"google.com",
+		"github.com",
+		"golang.org",
+	}
 
-	// The 'go' keyword starts a new goroutine.
-	// The ampersand (&) in &wg gets the memory address of the wg variable.
-	// We pass this address (the pointer) to the sayHello function.
-	// The c is to pass the channel to the goroutine
-	go sayHello(&wg, c)
-	fmt.Println("Hello from the main function!")
+	// Loop through the URLs and launch a goroutine for each.
+	for _, url := range urls {
+		wg.Add(1)
+		go pingURL(url, &wg, results)
+		//Pass the URL, WaitGroup pointer, and channel
+		// In Golang, the ampersand symbol & 
+		// primarily serves as the address-of operator. 
+	}
 
-	//Receive the value from the channel. 
-	//This will block until a value is sent.
-	duration := <-c
+	// This goroutine will collect results from the channel.
+	// We run this concurrently so main doesn't block waiting for all results
+	// before the WaitGroup is done.
+	go func() {
+		for i := 0; i < len(urls); i++ {
+			result := <- results
+			// Receive a result from the channel
+			fmt.Println(result)
+		}
+		close(results)
+		// Close the channgel when all the results are received
+	}()
 
-	wg.Wait() // Wait until the WaitGroup's counter is back to zero
+	wg.Wait()
+	//Block here until all goroutines have called wg.Done()
 
-	fmt.Printf("The goroutine took %v to complete. \n", duration)
+	// After wg.Wait() unblocks, ensure the results collection goroutine has finished.
+	// This is important because the results channel might still be processing.
+	// A simple way for now is to just wait for the channel to close.
+	<-results // This will block until the channel is closed.
 }
 
