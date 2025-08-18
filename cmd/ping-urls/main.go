@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -73,4 +74,3 @@ func main () {
 	// A simple way for now is to just wait for the channel to close.
 	<-results // This will block until the channel is closed.
 }
-
