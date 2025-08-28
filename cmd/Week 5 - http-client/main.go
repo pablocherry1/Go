@@ -4,12 +4,21 @@ import (
 	"fmt"
 	"net/http"
 	"io"
+	"encoding/json"
 )
+
+// Define a struct to hold the data from the JSON response
+type Post struct {
+	UserID		int		`json:"userID"`
+	ID			int		`json:"id"`
+	Title		string		`json:"title"`
+	Body		string		`json:"body"`
+}
 
 func main() {
 
 	// 1. Make an HTTP GET request
-	resp, err := http.Get("http://httpbin.org/get")
+	resp, err := http.Get("https://jsonplaceholder.typicode.com/posts/1")
 
 	// 2. Handle network-level errors
 	if err != nil {
@@ -34,9 +43,19 @@ func main() {
 		return
 	}
 
-	// 5. Print the body content
-	fmt.Println("Response Body:")
-	fmt.Println(string(body))
+	// Create a variable to hold the parsed data
+	var post Post
+
+	// Unmarshal the JSON data from the body into the struct
+	err = json.Unmarshal(body, &post)
+	if err != nil {
+		fmt.Printf("Error unmarshaling JSON: %v \n", err)
+		return
+	}
+	
+	// Print the parsed data from the struct
+	fmt.Printf("Parsed Data: \n %+v \n ", post)
+
 
 
 }
