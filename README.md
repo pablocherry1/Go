@@ -25,6 +25,18 @@ You can copy and paste the following XML prompt into chat to request a quiz on t
 ```xml
 <quiz_request>
 <first_question>week_selector</first_question>
+
+<weeks>
+    - 📘 Week 1 – Fundamentals of Go
+    - ⚠️ Week 2 – Error Handling & Modules
+    - 🧵 Week 3 – Concurrency in Go
+    - 📂 Week 4 – Working with Files, JSON, YAML
+    - 🌐 Week 5 – HTTP Clients & APIs
+    - 🖥️ Week 6 – Building HTTP Servers
+    - 🛠️ Week 7 – CLI Tools for SRE Work
+    - 🚀 Week 8 – Capstone Project
+  </weeks>
+
 <topics>
 ## 📘 Week 1 – Fundamentals of Go
 
