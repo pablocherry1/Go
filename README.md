@@ -25,13 +25,52 @@ You can copy and paste the following XML prompt into chat to request a quiz on t
 ```xml
 <quiz_request>
 <topics>
-- Golang Fundamentals (variables, constants, types, functions, loops, and conditionals)
-- Golang Project Structure
-- Error Handling (`if err != nil`, `fmt.Errorf`, and `errors.New`)
-- Go Modules (`go.mod`, `go.sum`)
-- Concurrency (goroutines, channels, `sync.WaitGroup`, `sync.Mutex`, `select`)
-- File I/O (`os`, `io`)
-- Structured Data Parsing (JSON, YAML)
+## 📘 Week 1 – Fundamentals of Go
+
+- [x]  Understand variables, constants, and types
+- [x]  Learn functions, loops (`for`), and conditionals (`if`, `switch`)
+- [x]  Understand Go file/project structure
+- [x]  Project: CLI program that prints a name
+- [x]  Project: Basic calculator (add, subtract, multiply, divide)
+
+---
+
+## ⚠️ Week 2 – Error Handling & Modules
+
+- [x]  Learn `error` type and `if err != nil` pattern
+- [x]  Understand `fmt.Errorf` and `errors.New`
+- [x]  Use `go mod` to initialize a module
+- [x]  Project: Word counter that reads a file and handles missing file errors
+
+---
+
+## 🧵 Week 3 – Concurrency in Go
+
+- [x]  Learn `goroutines` and `channels`
+- [x]  Use `select` with multiple channels
+- [x]  Understand `sync.WaitGroup` and `sync.Mutex`
+- [x]  Project: Ping multiple URLs in parallel and show response times
+- [x]  Project: Simulate log processor with concurrent handlers
+
+---
+
+## 📂 Week 4 – Working with Files, JSON, YAML
+
+- [x]  Learn to read/write files using `os` and `io`
+- [x]  Parse JSON with `encoding/json`
+- [x]  Parse YAML using `gopkg.in/yaml.v2`
+- [x]  Project: Read `config.json` and print formatted output
+- [x]  Project: Extract targets from a `prometheus.yml` file
+
+---
+
+## 🌐 Week 5 – HTTP Clients & APIs
+
+- [ ]  Use `http.Get`, `http.Post`, and custom headers
+- [ ]  Parse API responses in JSON
+- [ ]  Understand response codes and error handling
+- [ ]  Project: Status checker for a list of URLs
+- [ ]  Project: API health checker with output to file
 </topics>
 <quiz_format>
 - fill_in_the_blanks: true
