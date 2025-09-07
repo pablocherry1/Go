@@ -71,8 +71,38 @@ You can copy and paste the following XML prompt into chat to request a quiz on t
 - [ ]  Understand response codes and error handling
 - [ ]  Project: Status checker for a list of URLs
 - [ ]  Project: API health checker with output to file
+
+## 🖥️ Week 6 – Building HTTP Servers
+
+- [ ]  Build HTTP server with `net/http`
+- [ ]  Create multiple routes and handlers
+- [ ]  Return JSON responses from endpoints
+- [ ]  Project: Server with `/healthz` returning `{"status":"ok"}`
+- [ ]  Project: Static `/metrics` endpoint in Prometheus format
+
+---
+
+## 🛠️ Week 7 – CLI Tools for SRE Work
+
+- [ ]  Learn to use `flag` package for arguments
+- [ ]  Parse input from `os.Args` or `os.Stdin`
+- [ ]  Install and use `cobra` for CLI tooling
+- [ ]  Project: Tail and filter log file by severity
+- [ ]  Project: CLI that builds `kubectl logs` command based on input
+
+---
+
+## 🚀 Week 8 – Capstone Project
+
+- [ ]  Serve HTTP on `/healthz` and `/metrics`
+- [ ]  Perform health checks on URLs from YAML config
+- [ ]  Return Prometheus-style metrics on availability
+- [ ]  Write logs to a file
+- [ ]  Accept CLI flags like `-config path/to/file.yaml`
+
 </topics>
 <quiz_format>
+- week_selector: true
 - fill_in_the_blanks: true
 - open_questions: true
 - multiple_choice: true
