@@ -24,6 +24,7 @@ You can copy and paste the following XML prompt into chat to request a quiz on t
 
 ```xml
 <quiz_request>
+<first_question>week_selector</first_question>
 <topics>
 ## 📘 Week 1 – Fundamentals of Go
 
@@ -102,7 +103,6 @@ You can copy and paste the following XML prompt into chat to request a quiz on t
 
 </topics>
 <quiz_format>
-- week_selector: true
 - fill_in_the_blanks: true
 - open_questions: true
 - multiple_choice: true
