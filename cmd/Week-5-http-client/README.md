@@ -1,13 +1,45 @@
-Instead of memorizing the numbers, you should understand the categories of status codes. This is the most practical way to handle them.
+# HTTP Status Codes: Categories Explained
 
-1xx (Informational): The request has been received, and the process is continuing.
+Instead of memorizing every status code, the most practical approach is to **understand their categories**. This allows you to quickly diagnose whether an issue comes from the client or the server.
 
-2xx (Success): The request was successfully received, understood, and accepted. A 200 OK is in this category.
+---
 
-3xx (Redirection): Further action needs to be taken to complete the request.
+## 📘 Categories of HTTP Status Codes
 
-4xx (Client Error): The client (your program) made a mistake. A 404 Not Found or a 400 Bad Request are in this category.
+### 🔹 1xx – Informational
+- The request has been received and the process is continuing.
+- Example: `100 Continue`
 
-5xx (Server Error): The server failed to fulfill a valid request. A 500 Internal Server Error is in this category.
+---
 
-By knowing these categories, you can quickly diagnose whether an issue is on your end or the server's.
+### 🔹 2xx – Success
+- The request was successfully received, understood, and accepted.  
+- Example: `200 OK`
+
+---
+
+### 🔹 3xx – Redirection
+- Further action is required to complete the request.  
+- Example: `301 Moved Permanently`
+
+---
+
+### 🔹 4xx – Client Error
+- The client (your program) made a mistake.  
+- Examples:  
+  - `400 Bad Request`  
+  - `404 Not Found`
+
+---
+
+### 🔹 5xx – Server Error
+- The server failed to fulfill a valid request.  
+- Example: `500 Internal Server Error`
+
+---
+
+## ✅ Why Focus on Categories?
+By knowing these categories, you can:
+- Quickly identify if an error is **your responsibility** (4xx) or the **server’s responsibility** (5xx).  
+- Understand the flow of communication between client and server without memorizing every single code.  
+

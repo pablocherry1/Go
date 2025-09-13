@@ -23,8 +23,25 @@ To ensure I retain what I've learned, I will review the topics and practice the 
 You can copy and paste the following XML prompt into chat to request a quiz on the covered topics. The quiz will ask you to fill in the blanks in code and answer both open-ended and multiple-choice questions one at a time.
 
 ```xml
+
 <quiz_request>
-<first_question>week_selector</first_question>
+<mode>semanal_orden_automatico</mode>
+
+<rules>
+  - Solo generar preguntas de las semanas que tengan checkmark ✅.
+  - Ir en orden automático: empezar por la primera semana con checkmarks, luego la siguiente, etc.
+  - Hacer exactamente 7 preguntas por semana.
+  - Tipos de preguntas: 
+      * fill_in_the_blanks
+      * open_questions (explicación breve, no solo una palabra)
+      * multiple_choice
+  - Las 7 preguntas deben mezclar al menos 2 tipos.
+  - Dificultad progresiva: de fácil a retador dentro de la misma semana.
+  - Al menos 1 de las 7 preguntas debe ser un caso práctico aplicado.
+  - Después de cada respuesta, dar feedback inmediato:
+      * confirmar si es correcta o incorrecta
+      * explicar la respuesta correcta de forma breve y clara
+</rules>
 
 <weeks>
     - 📘 Week 1 – Fundamentals of Go
@@ -114,6 +131,7 @@ You can copy and paste the following XML prompt into chat to request a quiz on t
 - [ ]  Accept CLI flags like `-config path/to/file.yaml`
 
 </topics>
+
 <quiz_format>
 - fill_in_the_blanks: true
 - open_questions: true
